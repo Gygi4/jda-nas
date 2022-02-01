@@ -57,9 +57,20 @@ def getBuildParameters(base, bits) {
         'buildArguments': [],
         'env': ['CXXFLAGS': "-m${bits}", 'CFLAGS': "-m${bits}", 'LDFLAGS': "-m${bits}"]
     ]
+  } else if (Os.isFamily(Os.FAMILY_UNIX) && Os.isArch('aarch64')) {
+        bitSuffix = 'aarch64'
+        bits = 'float-abi=hard'
+        
+        return [
+        'identifier': "linux-${bitSuffix}",
+        'library': "lib${base}.so",
+        'setupArguments': ["-DBITZ:STRING=${bits}"],
+        'buildArguments': [],
+        'env': ['CXXFLAGS': "-m${bits}", 'CFLAGS': "-m${bits}", 'LDFLAGS': "-m${bits}"]
+    ]
   } else {
     return [
-        'identifier': "linux-aarch64",
+        'identifier': "linux-${bitSuffix}",
         'library': "lib${base}.so",
         'setupArguments': ["-DBITZ:STRING=${bits}"],
         'buildArguments': [],
