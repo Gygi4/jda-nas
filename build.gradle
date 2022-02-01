@@ -70,7 +70,7 @@ def getBuildParameters(base, bits) {
     ]
   } else {
     return [
-        'identifier': "linux-${bitSuffix}",
+        'identifier': "linux-aarch64",
         'library': "lib${base}.so",
         'setupArguments': ["-DBITZ:STRING=${bits}"],
         'buildArguments': [],
